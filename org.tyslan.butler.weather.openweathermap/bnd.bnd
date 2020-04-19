@@ -1,0 +1,12 @@
+Bundle-Version: 1.0.0.${tstamp}
+Bundle-Name: Butler: Weather: OpenWeatherMap Implementation
+Bundle-Description: Provides an implemetation for the weather API
+-privatepackage: org.tyslan.butler.weather.openweathermap
+-buildpath: \
+	org.ops4j.pax.logging.pax-logging-api,\
+	org.osgi.service.metatype.annotations,\
+	org.osgi.service.component.annotations,\
+	org.apache.httpcomponents.httpclient,\
+	org.apache.httpcomponents.httpcore,\
+	com.google.gson,\
+	org.tyslan.butler.weather.api;version=latest

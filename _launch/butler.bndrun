@@ -1,6 +1,8 @@
 -runfw: org.apache.felix.framework;version='[6.0.3,6.0.3]'
 -runee: JavaSE-11
 
+-resolve: manual
+
 -runbundles: \
 	org.apache.felix.gogo.runtime,\
 	org.apache.felix.gogo.shell,\
@@ -23,7 +25,12 @@
 	org.osgi.service.serviceloader,\
 	org.ops4j.pax.logging.pax-logging-api,\
 	org.ops4j.pax.logging.pax-logging-service,\
-	org.apache.felix.shell.remote
+	org.apache.felix.shell.remote,\
+	org.apache.httpcomponents.httpclient,\
+	org.apache.httpcomponents.httpcore,\
+	com.google.gson,\
+	org.tyslan.butler.weather.api;version=latest,\
+	org.tyslan.butler.weather.openweathermap;version=latest
 
 -runrequires:\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\

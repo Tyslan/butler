@@ -26,3 +26,14 @@ org.apache.felix:org.apache.felix.shell.remote:1.2.0
 # Logging
 org.ops4j.pax.logging:pax-logging-api:1.11.5
 org.ops4j.pax.logging:pax-logging-service:1.11.5
+
+# BND Annotations
+org.osgi:org.osgi.service.component.annotations:1.4.0
+org.osgi:org.osgi.service.metatype.annotations:1.4.0
+
+# REST Client
+org.apache.httpcomponents:httpcore-osgi:4.4.13
+org.apache.httpcomponents:httpclient-osgi:4.5.12
+
+# JSON
+com.google.code.gson:gson:2.8.6
