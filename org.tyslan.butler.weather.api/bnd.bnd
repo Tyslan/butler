@@ -1,0 +1,6 @@
+Bundle-Version: 1.0.0.${tstamp}
+Export-Package: \
+	org.tyslan.butler.weather.api
+Bundle-Name: Jarvis: Weather API
+Bundle-Description: Provides a weather API
+-buildpath: osgi.annotation
