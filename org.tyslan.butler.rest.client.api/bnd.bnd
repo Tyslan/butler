@@ -2,3 +2,8 @@ Bundle-Version: 1.0.0.${tstamp}
 Bundle-Name: Butler: Rest: Client: API
 Bundle-Description: Provides API for rest client utils
 -buildpath: osgi.annotation
+Export-Package: \
+	org.tyslan.butler.rest.client.api.exceptions,\
+	org.tyslan.butler.rest.client.api.method,\
+	org.tyslan.butler.rest.client.api.object,\
+	org.tyslan.butler.rest.client.api.validation
