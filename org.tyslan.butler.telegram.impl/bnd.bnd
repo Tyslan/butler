@@ -1,0 +1,8 @@
+Bundle-Version: 1.0.0.${tstamp}
+Bundle-Name: Butler: Telegram: Implementation
+Bundle-Description: Telegram Implementation
+-buildpath: \
+	org.ops4j.pax.logging.pax-logging-api,\
+	org.osgi.service.metatype.annotations,\
+	org.osgi.service.component.annotations,\
+	org.tyslan.butler.telegram.meta;version=latest

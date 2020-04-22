@@ -1,0 +1,4 @@
+Bundle-Version: 1.0.0.${tstamp}
+Export-Package: org.tyslan.butler.util.threads
+Bundle-Name: Butler: Util: Thread
+Bundle-Description: Provides utilities for working with threads

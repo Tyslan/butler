@@ -30,7 +30,10 @@
 	org.apache.httpcomponents.httpcore,\
 	com.google.gson,\
 	org.tyslan.butler.weather.api;version=latest,\
-	org.tyslan.butler.weather.openweathermap;version=latest
+	org.tyslan.butler.weather.openweathermap;version=latest,\
+	org.tyslan.butler.telegram.impl;version=latest,\
+	org.tyslan.butler.telegram.meta;version=latest,\
+	org.tyslan.butler.util.threads;version=latest
 
 -runrequires:\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
