@@ -1,8 +1,10 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
+import org.tyslan.butler.rest.client.api.object.RestObject;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-public class Sys {
+@SuppressWarnings("serial")
+public class Sys implements RestObject {
   private String countryCode;
   private long sunriseUnixTimestamp;
   private long sunsetUnixTimestamp;
