@@ -4,8 +4,8 @@ import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType
 @SuppressWarnings("serial")
-public class ValidationExecption extends Exception {
-  public ValidationExecption(String message) {
+public class ValidationException extends RestCallException {
+  public ValidationException(String message) {
     super(message);
   }
 }

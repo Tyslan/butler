@@ -7,4 +7,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 public @interface WeatherServiceConfig {
   @AttributeDefinition
   String getApiKey();
+
+  @AttributeDefinition(required = false)
+  String getLanguage();
 }

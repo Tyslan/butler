@@ -4,7 +4,7 @@ import org.osgi.annotation.versioning.ProviderType;
 
 @ProviderType
 @SuppressWarnings("serial")
-public class JsonParseException extends Exception {
+public class JsonParseException extends RestCallException {
   public JsonParseException(String message) {
     super(message);
   }

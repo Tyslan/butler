@@ -38,6 +38,14 @@ public class DefaultMethodExecutor implements RestMethodExecutor {
     this.responseHandler = new BasicResponseHandler();
   }
 
+  public void close() {
+    try {
+      httpclient.close();
+    } catch (IOException e) {
+      logger.error(e.getMessage(), e);
+    }
+  }
+
   @Override
   public <T extends RestObject, M extends RestMethod<T>> T execute(M method)
       throws RestCallException {

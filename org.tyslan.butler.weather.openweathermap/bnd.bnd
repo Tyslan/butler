@@ -9,4 +9,7 @@ Bundle-Description: Provides an implemetation for the weather API
 	org.apache.httpcomponents.httpclient,\
 	org.apache.httpcomponents.httpcore,\
 	com.google.gson,\
-	org.tyslan.butler.weather.api;version=latest
+	org.tyslan.butler.weather.api;version=latest,\
+	org.tyslan.butler.weather.openweathermap.meta;version=latest,\
+	org.tyslan.butler.rest.client.impl;version=latest,\
+	org.tyslan.butler.rest.client.api;version=latest
