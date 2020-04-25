@@ -1,23 +1,23 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
 import org.tyslan.butler.rest.client.api.object.RestObject;
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
 public class Coordinates implements RestObject {
+  @JsonProperty("lon")
   double longitude;
+  @JsonProperty("lat")
   double latitude;
 
   private Coordinates() {
     // Jackson;
   }
 
-  @JsonGetter("lon")
   public double getLongitude() {
     return longitude;
   }
 
-  @JsonGetter("lat")
   public double getLatitude() {
     return latitude;
   }

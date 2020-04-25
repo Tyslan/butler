@@ -1,17 +1,17 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
 import org.tyslan.butler.rest.client.api.object.RestObject;
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
 public class Clouds implements RestObject {
+  @JsonProperty("all")
   private int cloudiness;
 
   private Clouds() {
     // Jackson
   }
 
-  @JsonGetter("all")
   public int getCloudiness() {
     return cloudiness;
   }

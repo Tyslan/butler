@@ -1,59 +1,60 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
 import org.tyslan.butler.rest.client.api.object.RestObject;
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
 public class Main implements RestObject {
+  @JsonProperty("temp")
   private double temp;
+  @JsonProperty("feels_like")
   private double windChill;
+  @JsonProperty("temp_min")
   private double tempMin;
+  @JsonProperty("temp_max")
   private double tempMax;
+  @JsonProperty("pressure")
   private int pressure;
+  @JsonProperty("humidity")
   private int humidity;
+  @JsonProperty("sea_level")
   private int seaLevelPressure;
+  @JsonProperty("grnd_level")
   private int groundLevelPressure;
 
   private Main() {
     // Jackson
   }
 
-  @JsonGetter("temp")
+
   public double getTemp() {
     return temp;
   }
 
-  @JsonGetter("feels_like")
   public double getWindChill() {
     return windChill;
   }
 
-  @JsonGetter("temp_min")
   public double getTempMin() {
     return tempMin;
   }
 
-  @JsonGetter("temp_max")
   public double getTempMax() {
     return tempMax;
   }
 
-  @JsonGetter("pressure")
   public int getPressure() {
     return pressure;
   }
 
-  @JsonGetter("humidity")
   public int getHumidity() {
     return humidity;
   }
 
-  @JsonGetter("sea_level")
   public Integer getSeaLevelPressure() {
     return seaLevelPressure;
   }
 
-  @JsonGetter("grnd_level")
   public Integer getGroundLevelPressure() {
     return groundLevelPressure;
   }

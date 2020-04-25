@@ -1,13 +1,17 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
 import org.tyslan.butler.rest.client.api.object.RestObject;
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
 public class Weather implements RestObject {
+  @JsonProperty("id")
   private long id;
+  @JsonProperty("main")
   private String main;
+  @JsonProperty("description")
   private String description;
+  @JsonProperty("icon")
   private String weatherIconId;
 
   private Weather() {
@@ -18,7 +22,6 @@ public class Weather implements RestObject {
    *
    * @return Weather condition id;
    */
-  @JsonGetter("id")
   public long getId() {
     return id;
   }
@@ -27,17 +30,14 @@ public class Weather implements RestObject {
    *
    * @return Group of weather parameters
    */
-  @JsonGetter("main")
   public String getMain() {
     return main;
   }
 
-  @JsonGetter("description")
   public String getDescription() {
     return description;
   }
 
-  @JsonGetter("icon")
   public String getWeatherIconId() {
     return weatherIconId;
   }

@@ -2,72 +2,71 @@ package org.tyslan.butler.weather.openweathermap.meta.objects;
 
 import java.util.Arrays;
 import org.tyslan.butler.rest.client.api.object.RestObject;
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
 public class CurrentWeather implements RestObject {
+  @JsonProperty("coord")
   private Coordinates coordinates;
+  @JsonProperty("weather")
   private Weather[] weather;
+  @JsonProperty("main")
   private Main main;
+  @JsonProperty("wind")
   private Wind wind;
+  @JsonProperty("clouds")
   private Clouds clouds;
+  @JsonProperty("dt")
   private long unixTimestamp;
+  @JsonProperty("sys")
   private Sys sys;
+  @JsonProperty("timezone")
   private int unixTimeshift;
+  @JsonProperty("id")
   private long cityId;
+  @JsonProperty("name")
   private String cityName;
 
   private CurrentWeather() {
     // Jackson;
   }
 
-  @JsonGetter("coord")
   public Coordinates getCoordinates() {
     return coordinates;
   }
 
-
-  @JsonGetter("weather")
   public Weather[] getWeather() {
     return weather;
   }
 
-  @JsonGetter("main")
   public Main getMain() {
     return main;
   }
 
-  @JsonGetter("wind")
   public Wind getWind() {
     return wind;
   }
 
-  @JsonGetter("clouds")
   public Clouds getClouds() {
     return clouds;
   }
 
-  @JsonGetter("dt")
   public long getUnixTimestamp() {
     return unixTimestamp;
   }
 
-  @JsonGetter("sys")
   public Sys getSys() {
     return sys;
   }
 
-  @JsonGetter("timezone")
   public int getUnixTimeshift() {
     return unixTimeshift;
   }
 
-  @JsonGetter("id")
   public long getCityId() {
     return cityId;
   }
 
-  @JsonGetter("name")
   public String getCityName() {
     return cityName;
   }

@@ -1,23 +1,25 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
 import org.tyslan.butler.rest.client.api.object.RestObject;
-import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
 public class Wind implements RestObject {
+  @JsonProperty("speed")
   private double speed;
+  @JsonProperty("deg")
   private int degree;
 
   private Wind() {
     // Jackson
   }
 
-  @JsonGetter("speed")
+
   public double getSpeed() {
     return speed;
   }
 
-  @JsonGetter("deg")
+
   public int getDegree() {
     return degree;
   }
