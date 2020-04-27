@@ -1,4 +1,4 @@
-package org.tyslan.butler.telegram.api;
+package org.tyslan.butler.telegram.impl.abs;
 
 import org.tyslan.butler.telegram.meta.methods.SendMessage;
 

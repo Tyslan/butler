@@ -1,11 +1,15 @@
 Bundle-Version: 1.0.0.${tstamp}
 Bundle-Name: Butler: Telegram: Meta
 -buildpath: \
-	com.google.gson,\
 	org.apache.httpcomponents.httpclient,\
 	org.apache.httpcomponents.httpcore,\
 	org.ops4j.pax.logging.pax-logging-api,\
-	org.tyslan.butler.util.threads;version=latest
+	org.tyslan.butler.util.threads;version=latest,\
+	com.fasterxml.jackson.core.jackson-annotations,\
+	com.fasterxml.jackson.core.jackson-core,\
+	com.fasterxml.jackson.core.jackson-databind,\
+	org.tyslan.butler.rest.client.api;version=latest,\
+	org.tyslan.butler.telegram.api;version=latest
 Export-Package: \
 	org.tyslan.butler.telegram.meta,\
 	org.tyslan.butler.telegram.meta.api,\

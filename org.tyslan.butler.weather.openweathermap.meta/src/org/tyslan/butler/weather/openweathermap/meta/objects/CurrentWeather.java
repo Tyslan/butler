@@ -1,11 +1,9 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
 import java.util.Arrays;
-import org.tyslan.butler.rest.client.api.object.RestObject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class CurrentWeather implements RestObject {
+public class CurrentWeather {
   @JsonProperty("coord")
   private Coordinates coordinates;
   @JsonProperty("weather")

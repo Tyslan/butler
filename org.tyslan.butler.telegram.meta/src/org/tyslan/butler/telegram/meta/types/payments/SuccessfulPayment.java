@@ -1,32 +1,26 @@
 package org.tyslan.butler.telegram.meta.types.payments;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class SuccessfulPayment implements ApiObject {
-  @Expose
-  @SerializedName(value = "currency")
+public class SuccessfulPayment {
+  @JsonProperty(value = "currency")
   private String currency;
-  @Expose
-  @SerializedName(value = "total_amount")
+  @JsonProperty(value = "total_amount")
   private int totalAmount;
-  @Expose
-  @SerializedName(value = "invoice_payload")
+  @JsonProperty(value = "invoice_payload")
   private String invoicePayload;
-  @Expose
-  @SerializedName(value = "shipping_option_id")
+  @JsonProperty(value = "shipping_option_id")
   private String shippingOptionId;
-  @Expose
-  @SerializedName(value = "order_info")
+  @JsonProperty(value = "order_info")
   private OrderInfo orderInfo;
-  @Expose
-  @SerializedName(value = "telegram_payment_charge_id")
+  @JsonProperty(value = "telegram_payment_charge_id")
   private String telegramPaymentChargeId;
-  @Expose
-  @SerializedName(value = "provider_payment_charge_id")
+  @JsonProperty(value = "provider_payment_charge_id")
   private String providerPaymentChargeId;
+
+  private SuccessfulPayment() {
+    // Jackson
+  }
 
   public String getCurrency() {
     return currency;

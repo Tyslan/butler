@@ -1,26 +1,22 @@
 package org.tyslan.butler.telegram.meta.types.payments;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Invoice implements ApiObject {
-  @Expose
-  @SerializedName(value = "title")
+public class Invoice {
+  @JsonProperty(value = "title")
   private String title;
-  @Expose
-  @SerializedName(value = "description")
+  @JsonProperty(value = "description")
   private String description;
-  @Expose
-  @SerializedName(value = "start_parameter")
+  @JsonProperty(value = "start_parameter")
   private String startParameter;
-  @Expose
-  @SerializedName(value = "currency")
+  @JsonProperty(value = "currency")
   private String currency;
-  @Expose
-  @SerializedName(value = "total_amount")
+  @JsonProperty(value = "total_amount")
   private int totalAmount;
+
+  private Invoice() {
+    // Jackson
+  }
 
   public String getTitle() {
     return title;

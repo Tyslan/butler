@@ -1,10 +1,9 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
-import org.tyslan.butler.rest.client.api.object.RestObject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Main implements RestObject {
+
+public class Main {
   @JsonProperty("temp")
   private double temp;
   @JsonProperty("feels_like")

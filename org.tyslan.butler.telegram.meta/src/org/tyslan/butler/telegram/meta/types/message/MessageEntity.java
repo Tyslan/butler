@@ -1,30 +1,25 @@
 package org.tyslan.butler.telegram.meta.types.message;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.User;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class MessageEntity implements ApiObject {
-  @Expose
-  @SerializedName(value = "type")
+public class MessageEntity {
+  @JsonProperty(value = "type")
   private String type;
-  @Expose
-  @SerializedName(value = "offset")
+  @JsonProperty(value = "offset")
   private int offset;
-  @Expose
-  @SerializedName(value = "length")
+  @JsonProperty(value = "length")
   private int length;
-  @Expose
-  @SerializedName(value = "url")
+  @JsonProperty(value = "url")
   private String url;
-  @Expose
-  @SerializedName(value = "user")
+  @JsonProperty(value = "user")
   private User user;
-  @Expose
-  @SerializedName(value = "language")
+  @JsonProperty(value = "language")
   private String language;
+
+  private MessageEntity() {
+    // Jackson
+  }
 
   public String getType() {
     return type;

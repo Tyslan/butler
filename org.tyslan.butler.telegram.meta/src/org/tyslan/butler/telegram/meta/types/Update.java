@@ -1,6 +1,5 @@
 package org.tyslan.butler.telegram.meta.types;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.inline.InlineQuery;
 import org.tyslan.butler.telegram.meta.types.inline.result.ChosenInlineResult;
 import org.tyslan.butler.telegram.meta.types.message.Message;
@@ -8,47 +7,37 @@ import org.tyslan.butler.telegram.meta.types.payments.PreCheckoutQuery;
 import org.tyslan.butler.telegram.meta.types.payments.ShippingQuery;
 import org.tyslan.butler.telegram.meta.types.poll.Poll;
 import org.tyslan.butler.telegram.meta.types.poll.PollAnswer;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Update implements ApiObject {
-  @Expose
-  @SerializedName(value = "update_id")
+public class Update {
+  @JsonProperty(value = "update_id")
   private long id;
-  @Expose
-  @SerializedName(value = "message")
+  @JsonProperty(value = "message")
   private Message message;
-  @Expose
-  @SerializedName(value = "edited_message")
+  @JsonProperty(value = "edited_message")
   private Message editedMessage;
-  @Expose
-  @SerializedName(value = "channel_post")
+  @JsonProperty(value = "channel_post")
   private Message channelPost;
-  @Expose
-  @SerializedName(value = "edited_channel_post")
+  @JsonProperty(value = "edited_channel_post")
   private Message editedChannelPost;
-  @Expose
-  @SerializedName(value = "inline_query")
+  @JsonProperty(value = "inline_query")
   private InlineQuery inlineQuery;
-  @Expose
-  @SerializedName(value = "chosen_inline_result")
+  @JsonProperty(value = "chosen_inline_result")
   private ChosenInlineResult choosenInlineResult;
-  @Expose
-  @SerializedName(value = "callback_query")
+  @JsonProperty(value = "callback_query")
   private CallbackQuery callbackQuery;
-  @Expose
-  @SerializedName(value = "shipping_query")
+  @JsonProperty(value = "shipping_query")
   private ShippingQuery shippingQuery;
-  @Expose
-  @SerializedName(value = "pre_checkout_query")
+  @JsonProperty(value = "pre_checkout_query")
   private PreCheckoutQuery preCheckoutQuery;
-  @Expose
-  @SerializedName(value = "poll")
+  @JsonProperty(value = "poll")
   private Poll poll;
-  @Expose
-  @SerializedName(value = "poll_answer")
+  @JsonProperty(value = "poll_answer")
   private PollAnswer pollAnswer;
+
+  private Update() {
+    // Jackson
+  }
 
   public long getId() {
     return id;

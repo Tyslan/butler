@@ -1,4 +1,4 @@
-package org.tyslan.butler.telegram.meta.receiver;
+package org.tyslan.butler.telegram.impl.receiver;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.tyslan.butler.telegram.meta.Constants;
-import org.tyslan.butler.telegram.meta.api.bot.UpdateReceiver;
-import org.tyslan.butler.telegram.meta.api.bot.UpdateSupplier;
+import org.tyslan.butler.telegram.impl.Constants;
+import org.tyslan.butler.telegram.impl.abs.UpdateReceiver;
+import org.tyslan.butler.telegram.impl.abs.UpdateSupplier;
 import org.tyslan.butler.telegram.meta.types.Update;
 import org.tyslan.butler.telegram.meta.utils.BackOff;
 import org.tyslan.butler.telegram.meta.utils.ExponentialBackOff;

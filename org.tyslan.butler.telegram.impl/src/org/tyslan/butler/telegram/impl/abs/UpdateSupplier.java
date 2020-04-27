@@ -1,7 +1,7 @@
-package org.tyslan.butler.telegram.meta.api.bot;
+package org.tyslan.butler.telegram.impl.abs;
 
 import java.util.List;
-import org.tyslan.butler.telegram.meta.exceptions.TelegramException;
+import org.tyslan.butler.telegram.api.exceptions.TelegramException;
 import org.tyslan.butler.telegram.meta.types.Update;
 
 public interface UpdateSupplier {

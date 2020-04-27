@@ -1,17 +1,17 @@
 package org.tyslan.butler.telegram.meta.types;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Dice implements ApiObject {
-  @Expose
-  @SerializedName(value = "value")
+public class Dice {
+  @JsonProperty(value = "value")
   private String value;
 
   public String getValue() {
     return value;
+  }
+
+  private Dice() {
+    // Jackson
   }
 
   @Override

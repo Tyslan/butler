@@ -28,7 +28,6 @@
 	org.apache.felix.shell.remote,\
 	org.apache.httpcomponents.httpclient,\
 	org.apache.httpcomponents.httpcore,\
-	com.google.gson,\
 	org.tyslan.butler.weather.api;version=latest,\
 	org.tyslan.butler.weather.openweathermap;version=latest,\
 	org.tyslan.butler.telegram.meta;version=latest,\
@@ -38,7 +37,9 @@
 	org.tyslan.butler.weather.openweathermap.meta;version=latest,\
 	com.fasterxml.jackson.core.jackson-annotations,\
 	com.fasterxml.jackson.core.jackson-core,\
-	com.fasterxml.jackson.core.jackson-databind
+	com.fasterxml.jackson.core.jackson-databind,\
+	org.tyslan.butler.telegram.api;version=latest,\
+	org.tyslan.butler.telegram.impl;version=latest
 
 -runrequires:\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\

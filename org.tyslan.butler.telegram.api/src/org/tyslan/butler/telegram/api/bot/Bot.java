@@ -1,4 +1,4 @@
-package org.tyslan.butler.telegram.meta.api.bot;
+package org.tyslan.butler.telegram.api.bot;
 
 public interface Bot {
   void getBotUsername();

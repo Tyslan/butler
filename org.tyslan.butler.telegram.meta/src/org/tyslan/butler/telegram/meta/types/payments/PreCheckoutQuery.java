@@ -1,33 +1,27 @@
 package org.tyslan.butler.telegram.meta.types.payments;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.User;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class PreCheckoutQuery implements ApiObject {
-  @Expose
-  @SerializedName(value = "id")
+public class PreCheckoutQuery {
+  @JsonProperty(value = "id")
   private String id;
-  @Expose
-  @SerializedName(value = "from")
+  @JsonProperty(value = "from")
   private User from;
-  @Expose
-  @SerializedName(value = "currency")
+  @JsonProperty(value = "currency")
   private String currency;
-  @Expose
-  @SerializedName(value = "total_amount")
+  @JsonProperty(value = "total_amount")
   private String totalAmount;
-  @Expose
-  @SerializedName(value = "invoice_payload")
+  @JsonProperty(value = "invoice_payload")
   private String invoicePayload;
-  @Expose
-  @SerializedName(value = "shipping_option_id")
+  @JsonProperty(value = "shipping_option_id")
   private String shippingOptionId;
-  @Expose
-  @SerializedName(value = "order_info")
+  @JsonProperty(value = "order_info")
   private OrderInfo orderInfo;
+
+  private PreCheckoutQuery() {
+    // Jackson
+  }
 
   public String getId() {
     return id;

@@ -5,12 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.tyslan.butler.rest.client.api.exceptions.JsonParseException;
 import org.tyslan.butler.rest.client.api.method.RestGetMethod;
 import org.tyslan.butler.rest.client.api.method.RestMethodType;
-import org.tyslan.butler.rest.client.api.object.RestObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public abstract class DefaultGetMethod<T extends RestObject> implements RestGetMethod<T> {
+public abstract class DefaultGetMethod<T> implements RestGetMethod<T> {
   private static final Logger logger = LoggerFactory.getLogger(DefaultGetMethod.class);
   protected ObjectMapper mapper;
   protected Class<T> methodResultType;

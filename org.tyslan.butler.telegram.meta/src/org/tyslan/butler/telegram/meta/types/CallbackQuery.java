@@ -1,33 +1,27 @@
 package org.tyslan.butler.telegram.meta.types;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.message.Message;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class CallbackQuery implements ApiObject {
-  @Expose
-  @SerializedName(value = "id")
+public class CallbackQuery {
+  @JsonProperty(value = "id")
   private String id;
-  @Expose
-  @SerializedName(value = "from")
+  @JsonProperty(value = "from")
   private User from;
-  @Expose
-  @SerializedName(value = "message")
+  @JsonProperty(value = "message")
   private Message message;
-  @Expose
-  @SerializedName(value = "inline_message_id")
+  @JsonProperty(value = "inline_message_id")
   private String inlineMessageId;
-  @Expose
-  @SerializedName(value = "chat_instance")
+  @JsonProperty(value = "chat_instance")
   private String chatInstance;
-  @Expose
-  @SerializedName(value = "data")
+  @JsonProperty(value = "data")
   private String data;
-  @Expose
-  @SerializedName(value = "game_short_name")
+  @JsonProperty(value = "game_short_name")
   private String gameShortName;
+
+  private CallbackQuery() {
+    // Jackson
+  }
 
   public String getId() {
     return id;

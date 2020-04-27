@@ -1,26 +1,22 @@
 package org.tyslan.butler.telegram.meta.types.file;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class PhoteSize implements ApiObject {
-  @Expose
-  @SerializedName(value = "file_id")
+public class PhoteSize {
+  @JsonProperty(value = "file_id")
   private String fileId;
-  @Expose
-  @SerializedName(value = "file_unique_id")
+  @JsonProperty(value = "file_unique_id")
   private String fileUniqueId;
-  @Expose
-  @SerializedName(value = "width")
+  @JsonProperty(value = "width")
   private int width;
-  @Expose
-  @SerializedName(value = "height")
+  @JsonProperty(value = "height")
   private int height;
-  @Expose
-  @SerializedName(value = "file_size")
+  @JsonProperty(value = "file_size")
   private Integer fileSize;
+
+  private PhoteSize() {
+    // Jackson
+  }
 
   public String getFileId() {
     return fileId;

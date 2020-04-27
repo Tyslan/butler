@@ -4,12 +4,12 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.metatype.annotations.Designate;
-import org.tyslan.butler.telegram.meta.api.bot.UpdateReceiver;
-import org.tyslan.butler.telegram.meta.exceptions.TelegramException;
-import org.tyslan.butler.telegram.meta.executor.MethodExecutor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.tyslan.butler.telegram.impl.abs.UpdateReceiver;
+import org.tyslan.butler.telegram.impl.receiver.LongPollingSession;
 import org.tyslan.butler.telegram.meta.methods.GetMe;
 import org.tyslan.butler.telegram.meta.methods.SendMessage;
-import org.tyslan.butler.telegram.meta.receiver.LongPollingSession;
 import org.tyslan.butler.telegram.meta.types.Update;
 import org.tyslan.butler.telegram.meta.types.User;
 import org.tyslan.butler.telegram.meta.types.message.Message;
@@ -17,6 +17,7 @@ import org.tyslan.butler.telegram.meta.types.message.Message;
 @Component(immediate = true)
 @Designate(ocd = TelegramServiceConfig.class)
 public class TelegramServiceImpl {
+  private static final Logger logger = LoggerFactory.getLogger(TelegramServiceImpl.class);
   private LongPollingSession session;
 
   @Activate
@@ -43,7 +44,7 @@ public class TelegramServiceImpl {
       LongPollingSession session = new LongPollingSession(config.getBotToken(), receiver);
       session.start();
       System.out.println(message);
-    } catch (TelegramException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }

@@ -1,38 +1,30 @@
 package org.tyslan.butler.telegram.meta.types;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class User implements ApiObject {
-  @Expose
-  @SerializedName(value = "@id")
+public class User {
+  @JsonProperty(value = "@id")
   private long id;
-  @Expose
-  @SerializedName(value = "is_bot")
+  @JsonProperty(value = "is_bot")
   private boolean isBot;
-  @Expose
-  @SerializedName(value = "first_name")
+  @JsonProperty(value = "first_name")
   private String firstName;
-  @Expose
-  @SerializedName(value = "last_name")
+  @JsonProperty(value = "last_name")
   private String lastName;
-  @Expose
-  @SerializedName(value = "username")
+  @JsonProperty(value = "username")
   private String username;
-  @Expose
-  @SerializedName(value = "language_code")
+  @JsonProperty(value = "language_code")
   private String languageCode;
-  @Expose
-  @SerializedName(value = "can_join_groups")
+  @JsonProperty(value = "can_join_groups")
   private Boolean canJoinGroups;
-  @Expose
-  @SerializedName(value = "can_read_all_group_messages")
+  @JsonProperty(value = "can_read_all_group_messages")
   private Boolean canReadAllGroupMessages;
-  @Expose
-  @SerializedName(value = "supports_inline_queries")
+  @JsonProperty(value = "supports_inline_queries")
   private Boolean supportsInlineQueries;
+
+  private User() {
+    // Jackson
+  }
 
   public long getId() {
     return id;

@@ -1,26 +1,22 @@
 package org.tyslan.butler.telegram.meta.types;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Contact implements ApiObject {
-  @Expose
-  @SerializedName(value = "phone_number")
+public class Contact {
+  @JsonProperty(value = "phone_number")
   private String phoneNumber;
-  @Expose
-  @SerializedName(value = "first_name")
+  @JsonProperty(value = "first_name")
   private String firstName;
-  @Expose
-  @SerializedName(value = "last_name")
+  @JsonProperty(value = "last_name")
   private String lastName;
-  @Expose
-  @SerializedName(value = "user_id")
+  @JsonProperty(value = "user_id")
   private String userId;
-  @Expose
-  @SerializedName(value = "vcard")
+  @JsonProperty(value = "vcard")
   private String vCard;
+
+  private Contact() {
+    // Jackson
+  }
 
   public String getPhoneNumber() {
     return phoneNumber;

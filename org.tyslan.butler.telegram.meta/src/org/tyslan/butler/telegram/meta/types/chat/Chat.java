@@ -1,54 +1,41 @@
 package org.tyslan.butler.telegram.meta.types.chat;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.message.Message;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Chat implements ApiObject {
-  @Expose
-  @SerializedName(value = "id")
+public class Chat {
+  @JsonProperty(value = "id")
   private long id;
-  @Expose
-  @SerializedName(value = "type")
+  @JsonProperty(value = "type")
   private String type;
-  @Expose
-  @SerializedName(value = "title")
+  @JsonProperty(value = "title")
   private String title;
-  @Expose
-  @SerializedName(value = "username")
+  @JsonProperty(value = "username")
   private String userName;
-  @Expose
-  @SerializedName(value = "first_name")
+  @JsonProperty(value = "first_name")
   private String firstName;
-  @Expose
-  @SerializedName(value = "last_name")
+  @JsonProperty(value = "last_name")
   private String lastName;
-  @Expose
-  @SerializedName(value = "photo")
+  @JsonProperty(value = "photo")
   private ChatPhoto photo;
-  @Expose
-  @SerializedName(value = "description")
+  @JsonProperty(value = "description")
   private String description;
-  @Expose
-  @SerializedName(value = "invite_link")
+  @JsonProperty(value = "invite_link")
   private String inviteLink;
-  @Expose
-  @SerializedName(value = "pinned_message")
+  @JsonProperty(value = "pinned_message")
   private Message pinnedMessage;
-  @Expose
-  @SerializedName(value = "permissions")
+  @JsonProperty(value = "permissions")
   private ChatPermissions permissions;
-  @Expose
-  @SerializedName(value = "slow_mode_delay")
+  @JsonProperty(value = "slow_mode_delay")
   private Integer slowModeDelay;
-  @Expose
-  @SerializedName(value = "sticker_set_name")
+  @JsonProperty(value = "sticker_set_name")
   private String stickerSetName;
-  @Expose
-  @SerializedName(value = "can_set_sticker_set")
+  @JsonProperty(value = "can_set_sticker_set")
   private Boolean canSetStickerSet;
+
+  private Chat() {
+    // Jackson
+  }
 
   public long getId() {
     return id;

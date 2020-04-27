@@ -1,7 +1,11 @@
 Bundle-Version: 1.0.0.${tstamp}
 Bundle-Name: Butler: Telegram API
 Bundle-Description: Telegram API for internal use
-Export-Package: org.tyslan.butler.telegram.api
+Export-Package: \
+	org.tyslan.butler.telegram.api,\
+	org.tyslan.butler.telegram.api.exceptions,\
+	org.tyslan.butler.telegram.api.bot
 -buildpath: \
 	osgi.annotation,\
-	org.tyslan.butler.telegram.meta;version=latest
+	org.tyslan.butler.rest.client.api;version=latest,\
+	com.fasterxml.jackson.core.jackson-annotations

@@ -1,4 +1,4 @@
-package org.tyslan.butler.telegram.meta.exceptions;
+package org.tyslan.butler.telegram.api.exceptions;
 
 public class TelegramCallException extends TelegramException {
   private static final long serialVersionUID = -5058463351702172078L;

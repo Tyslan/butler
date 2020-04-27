@@ -18,12 +18,12 @@ import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tyslan.butler.rest.client.api.exceptions.JsonParseException;
+import org.tyslan.butler.rest.client.api.exceptions.JsonSerializationException;
 import org.tyslan.butler.rest.client.api.exceptions.RestCallException;
 import org.tyslan.butler.rest.client.api.method.RestGetMethod;
 import org.tyslan.butler.rest.client.api.method.RestMethod;
 import org.tyslan.butler.rest.client.api.method.RestMethodExecutor;
 import org.tyslan.butler.rest.client.api.method.RestPostMethod;
-import org.tyslan.butler.rest.client.api.object.RestObject;
 
 public class DefaultMethodExecutor implements RestMethodExecutor {
   private static final Logger logger = LoggerFactory.getLogger(DefaultMethodExecutor.class);
@@ -47,8 +47,7 @@ public class DefaultMethodExecutor implements RestMethodExecutor {
   }
 
   @Override
-  public <T extends RestObject, M extends RestMethod<T>> T execute(M method)
-      throws RestCallException {
+  public <T, M extends RestMethod<T>> T execute(M method) throws RestCallException {
     if (method == null) {
       throw new RestCallException("Parameter method can not be null");
     }
@@ -56,8 +55,7 @@ public class DefaultMethodExecutor implements RestMethodExecutor {
   }
 
   @Override
-  public <T extends RestObject, M extends RestMethod<T>> String call(M method)
-      throws RestCallException {
+  public <T, M extends RestMethod<T>> String call(M method) throws RestCallException {
     if (method == null) {
       throw new RestCallException("Parameter method can not be null");
     }
@@ -69,8 +67,7 @@ public class DefaultMethodExecutor implements RestMethodExecutor {
     }
   }
 
-  private <T extends RestObject, M extends RestMethod<T>> T sendMethod(M method)
-      throws RestCallException {
+  private <T, M extends RestMethod<T>> T sendMethod(M method) throws RestCallException {
     try {
       String jsonResponse = sendMethodRequest(method);
       return method.fromJson(jsonResponse);
@@ -81,21 +78,20 @@ public class DefaultMethodExecutor implements RestMethodExecutor {
   }
 
   @SuppressWarnings("unchecked")
-  private <T extends RestObject, M extends RestMethod<T>> String sendMethodRequest(M method)
+  private <T, M extends RestMethod<T>> String sendMethodRequest(M method)
       throws RestCallException, URISyntaxException, IOException {
     method.validate();
     switch (method.getType()) {
       case GET:
-        return executeGet((RestGetMethod<RestObject>) method);
+        return executeGet((RestGetMethod<T>) method);
       case POST:
-        return executePost((RestPostMethod<RestObject>) method);
+        return executePost((RestPostMethod<T>) method);
       default:
         throw new RestCallException("Unknown type: " + method.getType());
     }
   }
 
-  private String executeGet(RestGetMethod<RestObject> method)
-      throws IOException, URISyntaxException {
+  private <T> String executeGet(RestGetMethod<T> method) throws IOException, URISyntaxException {
     /* Make url */
     URIBuilder builder =
         new URIBuilder().setScheme("https").setHost(endpointUrl).setPath(method.getMethod());
@@ -120,8 +116,8 @@ public class DefaultMethodExecutor implements RestMethodExecutor {
     return responseHandler.handleResponse(response);
   }
 
-  private String executePost(RestPostMethod<RestObject> method)
-      throws URISyntaxException, IOException {
+  private <T> String executePost(RestPostMethod<T> method)
+      throws URISyntaxException, IOException, JsonSerializationException {
     /* Make url */
     URI uri = new URIBuilder().setScheme("https").setHost(endpointUrl).setPath(method.getMethod())
         .build();
@@ -130,7 +126,8 @@ public class DefaultMethodExecutor implements RestMethodExecutor {
     return response;
   }
 
-  private String postJson(URI uri, RestPostMethod<RestObject> method) throws IOException {
+  private <T> String postJson(URI uri, RestPostMethod<T> method)
+      throws IOException, JsonSerializationException {
     /* Prepare POST */
     HttpPost httppost = new HttpPost(uri);
     httppost.addHeader("charset", StandardCharsets.UTF_8.name());

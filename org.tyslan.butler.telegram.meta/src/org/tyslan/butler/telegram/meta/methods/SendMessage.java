@@ -1,32 +1,25 @@
 package org.tyslan.butler.telegram.meta.methods;
 
-import org.tyslan.butler.telegram.meta.api.methods.BotPostMethod;
-import org.tyslan.butler.telegram.meta.exceptions.TelegramValidationExeception;
+import org.tyslan.butler.rest.client.api.exceptions.ValidationException;
 import org.tyslan.butler.telegram.meta.types.message.Message;
 import org.tyslan.butler.telegram.meta.types.message.ParseMode;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SendMessage extends BotPostMethod<Message> {
+public class SendMessage extends DefaultPostMethod<Message> {
   private static final String PATH = "sendMessage";
 
-  @Expose
-  @SerializedName(value = "chat_id")
+  @JsonProperty(value = "chat_id")
   private long chatId;
-  @Expose
-  @SerializedName(value = "text")
+  @JsonProperty(value = "text")
   private String text;
-  @Expose
-  @SerializedName(value = "parse_mode")
+  @JsonProperty(value = "parse_mode")
   private String parseMode;
-  @Expose
-  @SerializedName(value = "disable_web_page_preview")
+  @JsonProperty(value = "disable_web_page_preview")
   private Boolean disableWebPagePreview;
-  @Expose
-  @SerializedName(value = "disable_notification")
+  @JsonProperty(value = "disable_notification")
   private Boolean disableNotification;
-  @Expose
-  @SerializedName(value = "reply_to_message_id")
+  @JsonProperty(value = "reply_to_message_id")
   private Long replyToMessageId;
   // TODO
   // private ? replyMarkup
@@ -62,14 +55,15 @@ public class SendMessage extends BotPostMethod<Message> {
   }
 
   @Override
+  @JsonIgnore
   public String getMethod() {
     return PATH;
   }
 
   @Override
-  public void validate() throws TelegramValidationExeception {
+  public void validate() throws ValidationException {
     if (text == null) {
-      throw new TelegramValidationExeception("Text cannot be null;");
+      throw new ValidationException("Text cannot be null;");
     }
   }
 

@@ -3,7 +3,6 @@ package org.tyslan.butler.rest.client.api.method;
 import org.osgi.annotation.versioning.ProviderType;
 import org.tyslan.butler.rest.client.api.exceptions.RestCallException;
 import org.tyslan.butler.rest.client.api.exceptions.ValidationException;
-import org.tyslan.butler.rest.client.api.object.RestObject;
 
 @ProviderType
 public interface RestMethodExecutor {
@@ -16,7 +15,7 @@ public interface RestMethodExecutor {
    * @throws RestCallException
    * @throws ValidationException
    */
-  <T extends RestObject, M extends RestMethod<T>> T execute(M method) throws RestCallException;
+  <T, M extends RestMethod<T>> T execute(M method) throws RestCallException;
 
   /**
    *
@@ -27,5 +26,5 @@ public interface RestMethodExecutor {
    * @throws RestCallException
    * @throws ValidationException
    */
-  <T extends RestObject, M extends RestMethod<T>> String call(M method) throws RestCallException;
+  <T, M extends RestMethod<T>> String call(M method) throws RestCallException;
 }

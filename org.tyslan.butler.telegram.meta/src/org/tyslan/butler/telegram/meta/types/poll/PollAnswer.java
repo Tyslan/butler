@@ -1,22 +1,20 @@
 package org.tyslan.butler.telegram.meta.types.poll;
 
 import java.util.Arrays;
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.User;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class PollAnswer implements ApiObject {
-  @Expose
-  @SerializedName(value = "poll_id")
+public class PollAnswer {
+  @JsonProperty(value = "poll_id")
   private String pollId;
-  @Expose
-  @SerializedName(value = "user")
+  @JsonProperty(value = "user")
   private User user;
-  @Expose
-  @SerializedName(value = "option_ids")
+  @JsonProperty(value = "option_ids")
   private int[] optionIds;
+
+  private PollAnswer() {
+    // Jackson
+  }
 
   public String getPollId() {
     return pollId;

@@ -1,10 +1,9 @@
 package org.tyslan.butler.weather.openweathermap.meta.objects;
 
-import org.tyslan.butler.rest.client.api.object.RestObject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Sys implements RestObject {
+
+public class Sys {
   @JsonProperty("country")
   private String countryCode;
   @JsonProperty("sunrise")
