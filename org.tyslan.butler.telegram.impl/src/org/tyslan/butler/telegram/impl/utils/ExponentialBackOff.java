@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.tyslan.butler.telegram.meta.utils;
+package org.tyslan.butler.telegram.impl.utils;
 
 import java.io.IOException;
 

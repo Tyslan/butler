@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.tyslan.butler.telegram.impl.Constants;
 import org.tyslan.butler.telegram.impl.abs.UpdateReceiver;
 import org.tyslan.butler.telegram.impl.abs.UpdateSupplier;
+import org.tyslan.butler.telegram.impl.utils.BackOff;
+import org.tyslan.butler.telegram.impl.utils.ExponentialBackOff;
 import org.tyslan.butler.telegram.meta.types.Update;
-import org.tyslan.butler.telegram.meta.utils.BackOff;
-import org.tyslan.butler.telegram.meta.utils.ExponentialBackOff;
 import org.tyslan.butler.util.threads.CustomExecutors;
 
 // https://github.com/rubenlagus/TelegramBots/blob/a7aec1e581efcf6fd10777eacbcf311807477f10/telegrambots/src/main/java/org/telegram/telegrambots/updatesreceivers/DefaultBotSession.java
