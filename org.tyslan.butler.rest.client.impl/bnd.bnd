@@ -5,3 +5,4 @@ Bundle-Version: 1.0.0.${tstamp}
 	org.apache.httpcomponents.httpclient,\
 	org.apache.httpcomponents.httpcore
 Export-Package: org.tyslan.butler.rest.client.impl
+Bundle-Name: Butler: Rest: Client: Implementation

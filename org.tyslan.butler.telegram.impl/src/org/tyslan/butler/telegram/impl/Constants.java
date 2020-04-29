@@ -6,5 +6,9 @@ public class Constants {
 
 
   public static final int GETUPDATES_TIMEOUT = 50;
-  public static int GETUPDATES_LIMIT = 100;
+  public static final int GETUPDATES_LIMIT = 100;
+
+  private Constants() {
+    // HIDE
+  }
 }

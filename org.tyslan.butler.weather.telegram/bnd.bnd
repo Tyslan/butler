@@ -1,0 +1,12 @@
+Bundle-Version: 1.0.0.${tstamp}
+-privatepackage: org.tyslan.butler.weather.telegram
+-buildpath: \
+	org.ops4j.pax.logging.pax-logging-api,\
+	org.tyslan.butler.telegram.api;version=latest,\
+	org.tyslan.butler.weather.api;version=latest,\
+	org.apache.sling.commons.scheduler,\
+	org.osgi.service.component.annotations,\
+	org.tyslan.butler.telegram.meta;version=latest,\
+	org.tyslan.butler.rest.client.api;version=latest
+Bundle-Name: Butler: Weather: Telegram
+Bundle-Description: Bundle used to send weather updates to telegram

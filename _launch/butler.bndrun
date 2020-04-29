@@ -1,8 +1,6 @@
 -runfw: org.apache.felix.framework;version='[6.0.3,6.0.3]'
 -runee: JavaSE-11
 
--resolve: manual
-
 -runbundles: \
 	org.apache.felix.gogo.runtime,\
 	org.apache.felix.gogo.shell,\
@@ -39,7 +37,12 @@
 	com.fasterxml.jackson.core.jackson-core,\
 	com.fasterxml.jackson.core.jackson-databind,\
 	org.tyslan.butler.telegram.api;version=latest,\
-	org.tyslan.butler.telegram.impl;version=latest
+	org.tyslan.butler.telegram.impl;version=latest,\
+	org.apache.sling.commons.metrics,\
+	org.apache.sling.commons.scheduler,\
+	org.apache.sling.commons.threads,\
+	io.dropwizard.metrics.core,\
+	org.tyslan.butler.weather.telegram;version=latest
 
 -runrequires:\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
