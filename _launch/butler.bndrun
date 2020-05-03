@@ -42,7 +42,24 @@
 	org.apache.sling.commons.scheduler,\
 	org.apache.sling.commons.threads,\
 	io.dropwizard.metrics.core,\
+	org.osgi.service.transaction.control,\
+	org.osgi.service.jdbc,\
+	org.osgi.service.jpa,\
+	com.h2database,\
+	javax.validation.api,\
+	org.apache.aries.jpa.container,\
+	org.apache.aries.jpa.javax.persistence_2.1,\
+	org.eclipse.persistence.antlr,\
+	org.eclipse.persistence.asm,\
+	org.eclipse.persistence.core,\
+	org.eclipse.persistence.jpa,\
+	org.eclipse.persistence.jpa.jpql,\
+	org.apache.aries.jpa.eclipselink.adapter,\
+	tx-control-provider-jpa-xa,\
+	tx-control-service-xa,\
 	org.tyslan.butler.weather.telegram;version=latest
+	
+-runpath: org.apache.geronimo.specs.geronimo-jta_1.1_spec;version=1.1.1
 
 -runrequires:\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\

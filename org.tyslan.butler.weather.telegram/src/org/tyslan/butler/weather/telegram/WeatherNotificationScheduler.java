@@ -3,6 +3,7 @@ package org.tyslan.butler.weather.telegram;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import org.apache.sling.commons.scheduler.ScheduleOptions;
 import org.apache.sling.commons.scheduler.Scheduler;
 import org.osgi.service.component.annotations.Activate;
@@ -20,12 +21,13 @@ import org.tyslan.butler.weather.api.TemperatureUnit;
 import org.tyslan.butler.weather.api.WeatherException;
 import org.tyslan.butler.weather.api.WeatherInfo;
 import org.tyslan.butler.weather.api.WeatherService;
+import org.tyslan.butler.weather.telegram.jpa.CurrentWeatherNotificationRepo;
 
-@Component(immediate = true,
-    property = {Constants.SCOPE + "=weather", Constants.FUNCTIONS + "=scheduleCurrentWeather"},
-    service = WeatherNotificationScheduler.class)
+@Component(service = WeatherNotificationScheduler.class)
 public class WeatherNotificationScheduler {
   private static final Logger logger = LoggerFactory.getLogger(WeatherNotificationScheduler.class);
+
+  private static final String CURRENT_WEATHER_PREFIX = "current.weather";
 
   private static final DateTimeFormatter formatter =
       DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -33,32 +35,47 @@ public class WeatherNotificationScheduler {
   private WeatherService weatherService;
   private TelegramService telegram;
   private Scheduler scheduler;
+  private CurrentWeatherNotificationRepo mapper;
 
   @Activate
   public WeatherNotificationScheduler(@Reference WeatherService weatherService,
-      @Reference TelegramService telegram, @Reference Scheduler scheduler) {
+      @Reference TelegramService telegram, @Reference Scheduler scheduler,
+      @Reference CurrentWeatherNotificationRepo mapper) {
     this.weatherService = weatherService;
     this.telegram = telegram;
     this.scheduler = scheduler;
+    this.mapper = mapper;
+    List<CurrentWeatherTelegramJob> list = mapper.getAll();
+    for (CurrentWeatherTelegramJob job : list) {
+      scheduleCurrentWeatherJob(job);
+    }
   }
 
 
   public void scheduleCurrentWeather(String jobName, String expression, long telegramChatId,
-      String location, String language) {
-    ScheduleOptions options = getScheduleOptions(jobName, expression);
-    Runnable job = getCurrentWeatherJob(telegramChatId, location, language);
+      String location) {
+    CurrentWeatherTelegramJob job =
+        new CurrentWeatherTelegramJob(jobName, expression, location, telegramChatId);
+    mapper.save(job);
+    scheduleCurrentWeatherJob(job);
+    logger.debug("Scheduled job {} with expression {} for {} for chat {}", jobName, expression,
+        location, telegramChatId);
+  }
+
+  private void scheduleCurrentWeatherJob(CurrentWeatherTelegramJob telegramJob) {
+    ScheduleOptions options =
+        getScheduleOptions(telegramJob.getJobName(), telegramJob.getExpression());
+    Runnable job = getCurrentWeatherJob(telegramJob.getChatId(), telegramJob.getLocation());
     schedule(options, job);
-    logger.debug("Scheduled job {} with expression {} for {} in {} for chat {}", jobName,
-        expression, location, language, telegramChatId);
   }
 
   private ScheduleOptions getScheduleOptions(String jobName, String expression) {
     ScheduleOptions options = scheduler.EXPR(expression);
-    options.name(jobName);
+    options.name(String.join(".", CURRENT_WEATHER_PREFIX, jobName));
     return options;
   }
 
-  private Runnable getCurrentWeatherJob(long telegramChatId, String location, String language) {
+  private Runnable getCurrentWeatherJob(long telegramChatId, String location) {
     return () -> {
       try {
         WeatherInfo info = weatherService.getCurrentWeather(location);
@@ -109,5 +126,14 @@ public class WeatherNotificationScheduler {
 
   private void schedule(ScheduleOptions options, Runnable runnable) {
     scheduler.schedule(runnable, options);
+  }
+
+  public List<CurrentWeatherTelegramJob> getAllCurrentWeatherJobs() {
+    return mapper.getAll();
+  }
+
+
+  public void deleteCurrentWeatherJob(long id) {
+    mapper.delete(id);
   }
 }
