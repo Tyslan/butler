@@ -3,12 +3,12 @@ package org.tyslan.butler.weather.openweathermap;
 import org.tyslan.butler.weather.api.WeatherCondition;
 
 public class WeatherConditionImpl implements WeatherCondition {
-  private int code;
+  private long code;
   private String shortDescription;
   private String description;
   private String icon;
 
-  public WeatherConditionImpl(int code, String shortDescription, String description, String icon) {
+  public WeatherConditionImpl(long code, String shortDescription, String description, String icon) {
     super();
     this.code = code;
     this.shortDescription = shortDescription;
@@ -17,7 +17,7 @@ public class WeatherConditionImpl implements WeatherCondition {
   }
 
   @Override
-  public int getCode() {
+  public long getCode() {
     return code;
   }
 

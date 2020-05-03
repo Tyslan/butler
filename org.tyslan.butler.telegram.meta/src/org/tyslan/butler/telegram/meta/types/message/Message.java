@@ -1,6 +1,5 @@
 package org.tyslan.butler.telegram.meta.types.message;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.Contact;
 import org.tyslan.butler.telegram.meta.types.Dice;
 import org.tyslan.butler.telegram.meta.types.Location;
@@ -17,144 +16,147 @@ import org.tyslan.butler.telegram.meta.types.file.Voice;
 import org.tyslan.butler.telegram.meta.types.payments.Invoice;
 import org.tyslan.butler.telegram.meta.types.payments.SuccessfulPayment;
 import org.tyslan.butler.telegram.meta.types.poll.Poll;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Message implements ApiObject {
-  @Expose
-  @SerializedName(value = "message_id")
+public class Message {
+
+  @JsonProperty(value = "message_id")
   private long messageId;
-  @Expose
-  @SerializedName(value = "from")
+
+  @JsonProperty(value = "from")
   private User from;
-  @Expose
-  @SerializedName(value = "date")
+
+  @JsonProperty(value = "date")
   private long unixTimestamp;
-  @Expose
-  @SerializedName(value = "chat")
+
+  @JsonProperty(value = "chat")
   private Chat chat;
-  @Expose
-  @SerializedName(value = "forward_from")
+
+  @JsonProperty(value = "forward_from")
   private User forwardedFrom;
-  @Expose
-  @SerializedName(value = "forward_from_chat")
+
+  @JsonProperty(value = "forward_from_chat")
   private Chat forwardedFromChat;
-  @Expose
-  @SerializedName(value = "forward_from_message_id")
+
+  @JsonProperty(value = "forward_from_message_id")
   private Long forwarderFromMessageId;
-  @Expose
-  @SerializedName(value = "forward_signature")
+
+  @JsonProperty(value = "forward_signature")
   private String forwardSignature;
-  @Expose
-  @SerializedName(value = "forward_sender_name")
+
+  @JsonProperty(value = "forward_sender_name")
   private String forwardSenderName;
-  @Expose
-  @SerializedName(value = "forward_date")
+
+  @JsonProperty(value = "forward_date")
   private Long forwardUnixTimestamp;
-  @Expose
-  @SerializedName(value = "reply_to_message")
+
+  @JsonProperty(value = "reply_to_message")
   private Message replyToMessage;
-  @Expose
-  @SerializedName(value = "edit_date")
+
+  @JsonProperty(value = "edit_date")
   private Long editUnixTimestamp;
-  @Expose
-  @SerializedName(value = "media_group_id")
+
+  @JsonProperty(value = "media_group_id")
   private String mediaGroupType;
-  @Expose
-  @SerializedName(value = "author_signature")
+
+  @JsonProperty(value = "author_signature")
   private String authorSignature;
-  @Expose
-  @SerializedName(value = "text")
+
+  @JsonProperty(value = "text")
   private String text;
-  @Expose
-  @SerializedName(value = "entities")
+
+  @JsonProperty(value = "entities")
   private MessageEntity[] entities;
-  @Expose
-  @SerializedName(value = "caption_entities")
+
+  @JsonProperty(value = "caption_entities")
   private MessageEntity[] captionEntities;
-  @Expose
-  @SerializedName(value = "audio")
+
+  @JsonProperty(value = "audio")
   private Audio audio;
-  @Expose
-  @SerializedName(value = "document")
+
+  @JsonProperty(value = "document")
   private Document document;
-  @Expose
-  @SerializedName(value = "animation")
+
+  @JsonProperty(value = "animation")
   private Animation animation;
   // TODO Game
-  @Expose
-  @SerializedName(value = "photo")
+
+  @JsonProperty(value = "photo")
   private PhoteSize[] photo;
   // TODO Sticker
-  @Expose
-  @SerializedName(value = "video")
+
+  @JsonProperty(value = "video")
   private Video video;
-  @Expose
-  @SerializedName(value = "voice")
+
+  @JsonProperty(value = "voice")
   private Voice voice;
-  @Expose
-  @SerializedName(value = "video_note")
+
+  @JsonProperty(value = "video_note")
   private VideoNote videoNote;
-  @Expose
-  @SerializedName(value = "caption")
+
+  @JsonProperty(value = "caption")
   private String caption;
-  @Expose
-  @SerializedName(value = "contact")
+
+  @JsonProperty(value = "contact")
   private Contact contact;
-  @Expose
-  @SerializedName(value = "location")
+
+  @JsonProperty(value = "location")
   private Location location;
-  @Expose
-  @SerializedName(value = "venue")
+
+  @JsonProperty(value = "venue")
   private Venue venue;
-  @Expose
-  @SerializedName(value = "poll")
+
+  @JsonProperty(value = "poll")
   private Poll poll;
-  @Expose
-  @SerializedName(value = "dice")
+
+  @JsonProperty(value = "dice")
   private Dice dice;
-  @Expose
-  @SerializedName(value = "new_chat_members")
+
+  @JsonProperty(value = "new_chat_members")
   private User[] newChatMembers;
-  @Expose
-  @SerializedName(value = "left_chat_member")
+
+  @JsonProperty(value = "left_chat_member")
   private User leftChatMember;
-  @Expose
-  @SerializedName(value = "new_chat_title")
+
+  @JsonProperty(value = "new_chat_title")
   private String newChatTitle;
-  @Expose
-  @SerializedName("new_chat_photo")
+
+  @JsonProperty("new_chat_photo")
   private PhoteSize[] newChatPhoto;
-  @Expose
-  @SerializedName("delete_chat_photo")
+
+  @JsonProperty("delete_chat_photo")
   private Boolean deleteChatPhoto;
-  @Expose
-  @SerializedName(value = "group_chat_created")
+
+  @JsonProperty(value = "group_chat_created")
   private Boolean groupChatCreated;
-  @Expose
-  @SerializedName(value = "supergroup_chat_created")
+
+  @JsonProperty(value = "supergroup_chat_created")
   private Boolean superGroupChatCreated;
-  @Expose
-  @SerializedName(value = "channel_chat_created")
+
+  @JsonProperty(value = "channel_chat_created")
   private Boolean channelChatCreated;
-  @Expose
-  @SerializedName(value = "migrate_to_chat_id")
+
+  @JsonProperty(value = "migrate_to_chat_id")
   private Long migrateToChatId;
-  @Expose
-  @SerializedName(value = "migrate_from_chat_id")
+
+  @JsonProperty(value = "migrate_from_chat_id")
   private Long migrateFromChatId;
-  @Expose
-  @SerializedName(value = "pinned_message")
+
+  @JsonProperty(value = "pinned_message")
   private Message pinnedMessage;
-  @Expose
-  @SerializedName(value = "invoice")
+
+  @JsonProperty(value = "invoice")
   private Invoice invoice;
-  @Expose
-  @SerializedName(value = "successful_payment")
+
+  @JsonProperty(value = "successful_payment")
   private SuccessfulPayment succesfulPayment;
-  @Expose
-  @SerializedName(value = "connected_webiste")
+
+  @JsonProperty(value = "connected_webiste")
   private String connectedWebsite;
   // TODO PassportData
   // TODO InlineKeyboardMarkup
+
+  private Message() {
+    // Jackson
+  }
 }

@@ -1,39 +1,31 @@
 package org.tyslan.butler.telegram.meta.types.poll;
 
 import java.util.Arrays;
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Poll implements ApiObject {
-  @Expose
-  @SerializedName(value = "id")
+public class Poll {
+  @JsonProperty(value = "id")
   private String id;
-  @Expose
-  @SerializedName(value = "question")
+  @JsonProperty(value = "question")
   private String question;
-  @Expose
-  @SerializedName(value = "options")
+  @JsonProperty(value = "options")
   private PollOption[] options;
-  @Expose
-  @SerializedName(value = "total_voter_count")
+  @JsonProperty(value = "total_voter_count")
   private int totalVoterCount;
-  @Expose
-  @SerializedName(value = "is_closed")
+  @JsonProperty(value = "is_closed")
   private boolean isClosed;
-  @Expose
-  @SerializedName(value = "is_anonymous")
+  @JsonProperty(value = "is_anonymous")
   private boolean isAnonymous;
-  @Expose
-  @SerializedName(value = "type")
+  @JsonProperty(value = "type")
   private String type;
-  @Expose
-  @SerializedName(value = "allows_multiple_answers")
+  @JsonProperty(value = "allows_multiple_answers")
   private Boolean allowsMultipleAnswers;
-  @Expose
-  @SerializedName(value = "correct_option_id")
+  @JsonProperty(value = "correct_option_id")
   private Integer correctOptionId;
+
+  private Poll() {
+    // Jackson
+  }
 
   public String getId() {
     return id;

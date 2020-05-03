@@ -1,17 +1,16 @@
 package org.tyslan.butler.telegram.meta.types.poll;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class PollOption implements ApiObject {
-  @Expose
-  @SerializedName(value = "text")
+public class PollOption {
+  @JsonProperty(value = "text")
   private String text;
-  @Expose
-  @SerializedName(value = "voter_count")
+  @JsonProperty(value = "voter_count")
   private int voterCount;
+
+  private PollOption() {
+    // Jackson
+  }
 
   public String getText() {
     return text;

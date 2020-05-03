@@ -1,24 +1,21 @@
 package org.tyslan.butler.telegram.meta.types.payments;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.User;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class ShippingQuery implements ApiObject {
-  @Expose
-  @SerializedName(value = "id")
+public class ShippingQuery {
+  @JsonProperty(value = "id")
   private String id;
-  @Expose
-  @SerializedName(value = "from")
+  @JsonProperty(value = "from")
   private User from;
-  @Expose
-  @SerializedName(value = "invoice_payload")
+  @JsonProperty(value = "invoice_payload")
   private String invoicePayLoad;
-  @Expose
-  @SerializedName(value = "shipping_address")
+  @JsonProperty(value = "shipping_address")
   private ShippingAddress shippingAddress;
+
+  private ShippingQuery() {
+    // Jackson
+  }
 
   public String getId() {
     return id;

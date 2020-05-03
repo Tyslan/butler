@@ -1,32 +1,55 @@
 package org.tyslan.butler.telegram.meta.methods;
 
-import org.tyslan.butler.telegram.meta.api.methods.BotPostMethod;
-import org.tyslan.butler.telegram.meta.exceptions.TelegramValidationExeception;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.tyslan.butler.rest.client.api.exceptions.JsonParseException;
+import org.tyslan.butler.rest.client.api.exceptions.JsonSerializationException;
+import org.tyslan.butler.rest.client.api.exceptions.ValidationException;
+import org.tyslan.butler.rest.client.api.method.RestMethodType;
+import org.tyslan.butler.rest.client.api.method.RestPostMethod;
+import org.tyslan.butler.telegram.api.TelegramResponse;
+import org.tyslan.butler.telegram.api.TelegramRestMethod;
+import org.tyslan.butler.telegram.meta.Constants;
 import org.tyslan.butler.telegram.meta.types.Update;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class GetUpdates extends BotPostMethod<Update> {
+public class GetUpdates extends TelegramRestMethod<TelegramResponse<List<Update>>>
+    implements RestPostMethod<TelegramResponse<List<Update>>> {
+  private static final Logger logger = LoggerFactory.getLogger(GetUpdates.class);
+
   private static final String PATH = "getUpdates";
 
-  @Expose
-  @SerializedName(value = "offset")
+  private ObjectMapper mapper;
+  private JavaType type;
+
+  @JsonProperty(value = "offset")
   private Long offset;
-  @Expose
-  @SerializedName(value = "limit")
+  @JsonProperty(value = "limit")
   private Integer limit;
-  @Expose
-  @SerializedName(value = "timeout")
+  @JsonProperty(value = "timeout")
   private Integer timeout;
-  @Expose
-  @SerializedName(value = "allowed_updates")
+  @JsonProperty(value = "allowed_updates")
   private String[] allowedUpdates;
 
   public GetUpdates() {
-    super(Update.class);
+    mapper = new ObjectMapper();
+    mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    mapper.setSerializationInclusion(Include.NON_NULL);
+
+    JavaType collectionType =
+        mapper.getTypeFactory().constructCollectionType(List.class, Update.class);
+    type = mapper.getTypeFactory().constructParametricType(TelegramResponse.class, collectionType);
   }
 
   @Override
+  @JsonIgnore
   public String getMethod() {
     return PATH;
   }
@@ -48,13 +71,40 @@ public class GetUpdates extends BotPostMethod<Update> {
   }
 
   @Override
-  public void validate() throws TelegramValidationExeception {
+  public void validate() throws ValidationException {
     if (limit != null) {
-      if ((limit < 1) || (limit > 100)) {
-        throw new TelegramValidationExeception("Limit should be 1 and 100.");
+      if ((limit < Constants.GETUPDATES_LOWER_LIMIT)
+          || (limit > Constants.GETUPDATES_UPPER_LIMIT)) {
+        throw new ValidationException(String.format("Limit should be between %d and %d.",
+            Constants.GETUPDATES_LOWER_LIMIT, Constants.GETUPDATES_UPPER_LIMIT));
       }
     }
-    // TODO Auto-generated method stub
+  }
 
+  @Override
+  public RestMethodType getType() {
+    return RestMethodType.POST;
+  }
+
+  @Override
+  public TelegramResponse<List<Update>> fromJson(String json) throws JsonParseException {
+    try {
+      return mapper.readValue(json, type);
+    } catch (JsonProcessingException e) {
+      logger.error(e.getMessage(), e);
+      throw new JsonParseException(
+          "Parsing exception during parsing of class: " + Update.class.getCanonicalName());
+    }
+  }
+
+  @Override
+  public String parametersAsJson() throws JsonSerializationException {
+    try {
+      return mapper.writeValueAsString(this);
+    } catch (JsonProcessingException e) {
+      logger.error(e.getMessage(), e);
+      throw new JsonSerializationException("Serialization exception during serialization of class: "
+          + this.getClass().getCanonicalName());
+    }
   }
 }

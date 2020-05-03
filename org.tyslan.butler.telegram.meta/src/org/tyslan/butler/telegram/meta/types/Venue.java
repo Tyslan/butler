@@ -1,26 +1,23 @@
 package org.tyslan.butler.telegram.meta.types;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Venue implements ApiObject {
-  @Expose
-  @SerializedName(value = "location")
+
+public class Venue {
+  @JsonProperty(value = "location")
   private Location location;
-  @Expose
-  @SerializedName(value = "title")
+  @JsonProperty(value = "title")
   private String title;
-  @Expose
-  @SerializedName(value = "address")
+  @JsonProperty(value = "address")
   private String address;
-  @Expose
-  @SerializedName("foursquare_id")
+  @JsonProperty("foursquare_id")
   private String foursquareId;
-  @Expose
-  @SerializedName(value = "foursquare_type")
+  @JsonProperty(value = "foursquare_type")
   private String foursquareType;
+
+  private Venue() {
+    // Jackson
+  }
 
   public Location getLocation() {
     return location;

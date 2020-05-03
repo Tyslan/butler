@@ -1,29 +1,24 @@
 package org.tyslan.butler.telegram.meta.types.payments;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class ShippingAddress implements ApiObject {
-  @Expose
-  @SerializedName(value = "shipping_address")
+public class ShippingAddress {
+  @JsonProperty(value = "shipping_address")
   private String countryCode;
-  @Expose
-  @SerializedName(value = "state")
+  @JsonProperty(value = "state")
   private String state;
-  @Expose
-  @SerializedName(value = "city")
+  @JsonProperty(value = "city")
   private String city;
-  @Expose
-  @SerializedName(value = "street_line1")
+  @JsonProperty(value = "street_line1")
   private String streetLine1;
-  @Expose
-  @SerializedName(value = "street_line2")
+  @JsonProperty(value = "street_line2")
   private String streetLine2;
-  @Expose
-  @SerializedName(value = "post_code")
+  @JsonProperty(value = "post_code")
   private String postCode;
+
+  private ShippingAddress() {
+    // Jackson
+  }
 
   public String getCountryCode() {
     return countryCode;

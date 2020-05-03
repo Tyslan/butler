@@ -1,17 +1,16 @@
 package org.tyslan.butler.telegram.meta.types;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Location implements ApiObject {
-  @Expose
-  @SerializedName(value = "longitude")
+public class Location {
+  @JsonProperty(value = "longitude")
   private double longitude;
-  @Expose
-  @SerializedName(value = "latitude")
+  @JsonProperty(value = "latitude")
   private double latitude;
+
+  private Location() {
+    // Jackson;
+  }
 
   public double getLongitude() {
     return longitude;

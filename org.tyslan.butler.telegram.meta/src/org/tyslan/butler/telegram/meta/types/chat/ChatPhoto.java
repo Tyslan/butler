@@ -1,23 +1,20 @@
 package org.tyslan.butler.telegram.meta.types.chat;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class ChatPhoto implements ApiObject {
-  @Expose
-  @SerializedName(value = "small_file_id")
+public class ChatPhoto {
+  @JsonProperty(value = "small_file_id")
   private String smallFileId;
-  @Expose
-  @SerializedName(value = "small_file_unique_id")
+  @JsonProperty(value = "small_file_unique_id")
   private String smallFileUniqueId;
-  @Expose
-  @SerializedName(value = "big_file_id")
+  @JsonProperty(value = "big_file_id")
   private String bigFileId;
-  @Expose
-  @SerializedName("big_file_unique_id")
+  @JsonProperty("big_file_unique_id")
   private String bigFileUniqueId;
+
+  private ChatPhoto() {
+    // Jackson
+  }
 
   public String getSmallFileId() {
     return smallFileId;

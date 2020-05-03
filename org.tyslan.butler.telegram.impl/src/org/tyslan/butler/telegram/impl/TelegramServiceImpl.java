@@ -2,54 +2,33 @@ package org.tyslan.butler.telegram.impl;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.metatype.annotations.Designate;
-import org.tyslan.butler.telegram.meta.api.bot.UpdateReceiver;
-import org.tyslan.butler.telegram.meta.exceptions.TelegramException;
-import org.tyslan.butler.telegram.meta.executor.MethodExecutor;
-import org.tyslan.butler.telegram.meta.methods.GetMe;
-import org.tyslan.butler.telegram.meta.methods.SendMessage;
-import org.tyslan.butler.telegram.meta.receiver.LongPollingSession;
-import org.tyslan.butler.telegram.meta.types.Update;
-import org.tyslan.butler.telegram.meta.types.User;
-import org.tyslan.butler.telegram.meta.types.message.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.tyslan.butler.rest.client.api.exceptions.RestCallException;
+import org.tyslan.butler.telegram.api.TelegramResponse;
+import org.tyslan.butler.telegram.api.TelegramRestMethod;
+import org.tyslan.butler.telegram.api.TelegramService;
+import org.tyslan.butler.telegram.api.exceptions.TelegramCallException;
 
 @Component(immediate = true)
 @Designate(ocd = TelegramServiceConfig.class)
-public class TelegramServiceImpl {
-  private LongPollingSession session;
+public class TelegramServiceImpl implements TelegramService {
+  private static final Logger logger = LoggerFactory.getLogger(TelegramServiceImpl.class);
+
+  private MethodExecutor executor;
+  // private LongPollingSession session;
 
   @Activate
-  protected void activate(TelegramServiceConfig config) {
-    try {
-      MethodExecutor sender = new MethodExecutor(config.getBotToken());
-      User user = sender.execute(new GetMe());
-      System.out.println(user);
-      Message message = sender.execute(new SendMessage(720574480l, "Hello World"));
-      UpdateReceiver receiver = new UpdateReceiver() {
-
-        @Override
-        public void getBotUsername() {
-          // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onUpdateReceived(Update update) {
-          // TODO Auto-generated method stub
-
-        }
-      };
-      LongPollingSession session = new LongPollingSession(config.getBotToken(), receiver);
-      session.start();
-      System.out.println(message);
-    } catch (TelegramException e) {
-      e.printStackTrace();
-    }
+  public TelegramServiceImpl(TelegramServiceConfig config) {
+    executor = new MethodExecutor(config.getBotToken());
+    logger.debug("TelegramService active");
   }
 
-  @Deactivate
-  protected void deactivate() {
-    session.stop();
+  @Override
+  public <T> void execute(TelegramRestMethod<TelegramResponse<T>> method)
+      throws TelegramCallException, RestCallException {
+    executor.execute(method);
+
   }
 }

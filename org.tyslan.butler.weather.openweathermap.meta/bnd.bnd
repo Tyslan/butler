@@ -1,0 +1,12 @@
+Bundle-Version: 1.0.0.${tstamp}
+-buildpath: \
+	org.tyslan.butler.rest.client.api;version=latest,\
+	com.fasterxml.jackson.core.jackson-databind;version=latest,\
+	com.fasterxml.jackson.core.jackson-core;version=latest,\
+	com.fasterxml.jackson.core.jackson-annotations;version=latest,\
+	org.ops4j.pax.logging.pax-logging-api
+Bundle-Name: Butler: Weather: OpenWeatherMap Meta
+Export-Package: \
+	org.tyslan.butler.weather.openweathermap.meta,\
+	org.tyslan.butler.weather.openweathermap.meta.methods,\
+	org.tyslan.butler.weather.openweathermap.meta.objects

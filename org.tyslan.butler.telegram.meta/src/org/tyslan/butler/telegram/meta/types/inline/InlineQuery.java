@@ -1,28 +1,24 @@
 package org.tyslan.butler.telegram.meta.types.inline;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
 import org.tyslan.butler.telegram.meta.types.Location;
 import org.tyslan.butler.telegram.meta.types.User;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class InlineQuery implements ApiObject {
-  @Expose
-  @SerializedName(value = "id")
+public class InlineQuery {
+  @JsonProperty(value = "id")
   private String id;
-  @Expose
-  @SerializedName(value = "from")
+  @JsonProperty(value = "from")
   private User from;
-  @Expose
-  @SerializedName(value = "location")
+  @JsonProperty(value = "location")
   private Location location;
-  @Expose
-  @SerializedName(value = "query")
+  @JsonProperty(value = "query")
   private String query;
-  @Expose
-  @SerializedName(value = "offset")
+  @JsonProperty(value = "offset")
   private String offset;
+
+  private InlineQuery() {
+    // Jackson
+  }
 
   public String getId() {
     return id;

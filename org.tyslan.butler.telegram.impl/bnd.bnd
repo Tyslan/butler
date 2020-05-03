@@ -5,4 +5,13 @@ Bundle-Description: Telegram Implementation
 	org.ops4j.pax.logging.pax-logging-api,\
 	org.osgi.service.metatype.annotations,\
 	org.osgi.service.component.annotations,\
-	org.tyslan.butler.telegram.meta;version=latest
+	org.tyslan.butler.telegram.meta;version=latest,\
+	org.tyslan.butler.rest.client.api;version=latest,\
+	org.tyslan.butler.util.threads;version=latest,\
+	org.tyslan.butler.rest.client.impl;version=latest,\
+	org.tyslan.butler.telegram.api;version=latest
+-privatepackage: \
+	org.tyslan.butler.telegram.impl,\
+	org.tyslan.butler.telegram.impl.abs,\
+	org.tyslan.butler.telegram.impl.receiver,\
+	org.tyslan.butler.telegram.impl.utils

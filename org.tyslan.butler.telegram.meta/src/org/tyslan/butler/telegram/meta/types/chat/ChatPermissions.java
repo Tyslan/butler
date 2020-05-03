@@ -1,35 +1,28 @@
 package org.tyslan.butler.telegram.meta.types.chat;
 
-import org.tyslan.butler.telegram.meta.api.types.ApiObject;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("serial")
-public class ChatPermissions implements ApiObject {
-  @Expose
-  @SerializedName(value = "can_send_messages")
+public class ChatPermissions {
+  @JsonProperty(value = "can_send_messages")
   private Boolean canSendMessages;
-  @Expose
-  @SerializedName(value = "can_send_media_messages")
+  @JsonProperty(value = "can_send_media_messages")
   private Boolean canSendMediaMessages;
-  @Expose
-  @SerializedName(value = "can_send_polls")
+  @JsonProperty(value = "can_send_polls")
   private Boolean canSendPolls;
-  @Expose
-  @SerializedName(value = "can_send_other_messages")
+  @JsonProperty(value = "can_send_other_messages")
   private Boolean canSendOtherMessages;
-  @Expose
-  @SerializedName(value = "can_add_web_page_previews")
+  @JsonProperty(value = "can_add_web_page_previews")
   private Boolean canAddWebPagePreviews;
-  @Expose
-  @SerializedName(value = "can_change_info")
+  @JsonProperty(value = "can_change_info")
   private Boolean canChangeInfo;
-  @Expose
-  @SerializedName(value = "can_invite_users")
+  @JsonProperty(value = "can_invite_users")
   private Boolean canInvateUsers;
-  @Expose
-  @SerializedName(value = "can_pin_messages")
+  @JsonProperty(value = "can_pin_messages")
   private Boolean canPinMessages;
+
+  private ChatPermissions() {
+    // Jackson
+  }
 
   public Boolean getCanSendMessages() {
     return canSendMessages;

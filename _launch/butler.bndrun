@@ -1,8 +1,6 @@
 -runfw: org.apache.felix.framework;version='[6.0.3,6.0.3]'
 -runee: JavaSE-11
 
--resolve: manual
-
 -runbundles: \
 	org.apache.felix.gogo.runtime,\
 	org.apache.felix.gogo.shell,\
@@ -28,12 +26,40 @@
 	org.apache.felix.shell.remote,\
 	org.apache.httpcomponents.httpclient,\
 	org.apache.httpcomponents.httpcore,\
-	com.google.gson,\
 	org.tyslan.butler.weather.api;version=latest,\
 	org.tyslan.butler.weather.openweathermap;version=latest,\
-	org.tyslan.butler.telegram.impl;version=latest,\
 	org.tyslan.butler.telegram.meta;version=latest,\
-	org.tyslan.butler.util.threads;version=latest
+	org.tyslan.butler.util.threads;version=latest,\
+	org.tyslan.butler.rest.client.api;version=latest,\
+	org.tyslan.butler.rest.client.impl;version=latest,\
+	org.tyslan.butler.weather.openweathermap.meta;version=latest,\
+	com.fasterxml.jackson.core.jackson-annotations,\
+	com.fasterxml.jackson.core.jackson-core,\
+	com.fasterxml.jackson.core.jackson-databind,\
+	org.tyslan.butler.telegram.api;version=latest,\
+	org.tyslan.butler.telegram.impl;version=latest,\
+	org.apache.sling.commons.metrics,\
+	org.apache.sling.commons.scheduler,\
+	org.apache.sling.commons.threads,\
+	io.dropwizard.metrics.core,\
+	org.osgi.service.transaction.control,\
+	org.osgi.service.jdbc,\
+	org.osgi.service.jpa,\
+	com.h2database,\
+	javax.validation.api,\
+	org.apache.aries.jpa.container,\
+	org.apache.aries.jpa.javax.persistence_2.1,\
+	org.eclipse.persistence.antlr,\
+	org.eclipse.persistence.asm,\
+	org.eclipse.persistence.core,\
+	org.eclipse.persistence.jpa,\
+	org.eclipse.persistence.jpa.jpql,\
+	org.apache.aries.jpa.eclipselink.adapter,\
+	tx-control-provider-jpa-xa,\
+	tx-control-service-xa,\
+	org.tyslan.butler.weather.telegram;version=latest
+	
+-runpath: org.apache.geronimo.specs.geronimo-jta_1.1_spec;version=1.1.1
 
 -runrequires:\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
